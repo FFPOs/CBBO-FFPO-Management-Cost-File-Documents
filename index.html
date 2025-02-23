@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document Upload Portal</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { color: #2C3E50; }
+        input, button { margin: 10px 0; padding: 8px; }
+    </style>
+</head>
+
+<body>
+    <h1>Upload Your Document</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label>Name: <input type="text" name="name" required /></label><br>
+        <label>Email: <input type="email" name="email" required /></label><br>
+        <label>File: <input type="file" id="fileInput" name="file" required /></label><br>
+        <button type="submit">Upload</button>
+    </form>
+
+    <p id="status"></p>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        const status = document.getElementById('status');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const file = formData.get('file');
+            
+            if (!file) {
+                status.innerText = "Please select a file.";
+                return;
+            }
+
+            alert(`Thank you, ${name}! Document submitted successfully.`);
+            form.reset();
+        });
+    </script>
+</body>
+
+</html>
